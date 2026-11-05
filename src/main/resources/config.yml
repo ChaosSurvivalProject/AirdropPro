@@ -1,0 +1,129 @@
+# ==================== AirdropPro 配置 ====================
+# 修改后使用 /airdrop reload 重载即可生效
+
+settings:
+  # 空投投放的世界名称（找不到时自动回退到第一个世界）
+  world: world
+  # 随机落点距离原点的最小 / 最大半径（格）
+  min-radius: 200
+  max-radius: 2000
+  # 寻找安全落点的最大尝试次数
+  max-attempts: 40
+  # 空投箱从多高的位置落下（0 = 直接出现在地面）
+  fall-height: 40
+  # 空投箱自动消失时间（分钟，0 = 永不消失）
+  despawn-minutes: 30
+  # 广播时是否附带坐标
+  broadcast-coords: true
+  # 是否持续显示光柱信标
+  beacon: true
+
+# ==================== 投放时间表 ====================
+schedule:
+  # 每天投放的时间点（24 小时制，一天两次）
+  times:
+    - "10:00"
+    - "20:00"
+  # 投放前提前多少分钟广播提醒
+  notify-before:
+    - 10
+    - 5
+    - 1
+
+# ==================== 消息文案 ====================
+# 可用占位符：{min} 剩余分钟、{time} 投放时间、{type} 空投类型、{player} 玩家名
+messages:
+  notify: "&8[&6空投&8] &e将于 &c{min} &e分钟后（&b{time}&e）在主世界随机地点投放补给，请做好准备！"
+  dropping: "&8[&6空投&8] &6{type} &e正在从天而降，注意观察天空！"
+  landed: "&8[&6空投&8] &6{type} &a已落地！先到先得！"
+  claimed: "&8[&6空投&8] &e{player} &a成功领取了一份空投补给！"
+
+# ==================== 三种空投 ====================
+# display    : 显示名（支持 & 颜色代码）
+# weight     : 权重（越大越容易出现）
+# pick-count : 每次从中随机抽取几项（-1 = 全部放入）
+# rewards    : 奖励列表，material 为物品英文名，enchants 为附魔（小写 ID）
+types:
+
+  common:
+    display: "&a普通补给"
+    weight: 60
+    pick-count: -1
+    rewards:
+      - material: BREAD
+        amount: 16
+      - material: COOKED_BEEF
+        amount: 8
+      - material: ARROW
+        amount: 32
+      - material: TORCH
+        amount: 16
+      - material: IRON_INGOT
+        amount: 8
+      - material: GOLDEN_APPLE
+        amount: 2
+      - material: OAK_LOG
+        amount: 32
+
+  rare:
+    display: "&9精良补给"
+    weight: 30
+    pick-count: -1
+    rewards:
+      - material: DIAMOND
+        amount: 8
+      - material: GOLDEN_APPLE
+        amount: 4
+      - material: EXPERIENCE_BOTTLE
+        amount: 16
+      - material: ENDER_PEARL
+        amount: 8
+      - material: OBSIDIAN
+        amount: 8
+      - material: DIAMOND_SWORD
+        amount: 1
+        name: "&b锋利之刃"
+        enchants:
+          sharpness: 4
+          unbreaking: 3
+      - material: DIAMOND_CHESTPLATE
+        amount: 1
+        name: "&9守护胸甲"
+        enchants:
+          protection: 4
+          unbreaking: 3
+
+  legendary:
+    display: "&6&l传奇补给"
+    weight: 10
+    pick-count: -1
+    rewards:
+      - material: NETHERITE_INGOT
+        amount: 3
+      - material: ENCHANTED_GOLDEN_APPLE
+        amount: 2
+      - material: TOTEM_OF_UNDYING
+        amount: 1
+      - material: NETHER_STAR
+        amount: 2
+      - material: DIAMOND_BLOCK
+        amount: 4
+      - material: EXPERIENCE_BOTTLE
+        amount: 32
+      - material: DRAGON_EGG
+        amount: 1
+      - material: NETHERITE_CHESTPLATE
+        amount: 1
+        name: "&6不灭胸甲"
+        enchants:
+          protection: 4
+          unbreaking: 3
+          mending: 1
+      - material: DIAMOND_PICKAXE
+        amount: 1
+        name: "&e穿岩镐"
+        enchants:
+          efficiency: 5
+          fortune: 3
+          unbreaking: 3
+          mending: 1
