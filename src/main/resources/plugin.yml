@@ -16,7 +16,16 @@ commands:
       - ad
       - kongtou
 
+  adupdate:
+    description: AirdropPro 内置更新管理命令
+    usage: /<command> <check|apply|status>
+    permission: airdrop.update
+
 permissions:
   airdrop.admin:
     description: 允许使用空投管理命令
+    default: op
+
+  airdrop.update:
+    description: 检查并应用 AirdropPro 内置更新（管理员）
     default: op

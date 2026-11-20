@@ -3,6 +3,11 @@ package com.yuanbao.airdrop;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
+// ===== 内置更新模块（mc-autoupdate） =====
+import com.yuanbao.airdrop.update.UpdateCommand;
+import com.yuanbao.airdrop.update.UpdateConfig;
+import com.yuanbao.airdrop.update.UpdateManager;
+
 /**
  * AirdropPro —— Purpur / Paper 1.21.11 定时空投插件。
  *
@@ -18,6 +23,21 @@ public final class AirdropPlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        // 内置更新：自检一次 + 每周四 12:00 定时；异常只关闭更新功能。
+        try {
+            UpdateConfig uc = new UpdateConfig(
+                "https://raw.githubusercontent.com/ChaosSurvivalProject/AirdropPro/main/updates/latest.json",
+                getDescription().getVersion(), "1.21", "stable", true, true);
+            UpdateManager um = new UpdateManager(this, uc);
+            um.checkAndSchedule(() -> um.check(false));
+            if (getCommand("adupdate") != null) {
+                getCommand("adupdate").setExecutor(new UpdateCommand(um));
+                getCommand("adupdate").setTabCompleter(new UpdateCommand(um));
+            }
+        } catch (Throwable t) {
+            getLogger().warning("[AirdropPro] 更新模块初始化失败（不影响主功能）：" + t.getMessage());
+        }
+
         saveDefaultConfig();
         AirdropType.loadAll(getConfig(), getLogger());
 
