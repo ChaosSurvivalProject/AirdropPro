@@ -1,8 +1,20 @@
 # AirdropPro —— Minecraft 定时空投插件
 
+<p align="center">
+  <img src="assets/images/banner.png" alt="AirdropPro 宣传图" width="820">
+</p>
+
+
 > English version: [README_EN.md](README_EN.md)
 
 一个面向 **Paper / Purpur 1.21.x** 服务端的轻量级**定时空投**插件。每天定时（默认 10:00 与 20:00）向主世界随机安全地点投放补给箱，玩家先到先得。内置三档稀有度、可配置奖励、倒计时广播、落地光柱与管理员命令，**零运行时第三方依赖、零外联网络请求**。
+
+## 效果预览
+
+<p align="center">
+  <img src="assets/images/demo.png" alt="AirdropPro 演示图" width="720">
+</p>
+
 
 ## 功能特性
 
